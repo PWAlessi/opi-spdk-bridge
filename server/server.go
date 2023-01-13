@@ -15,10 +15,10 @@ import (
 )
 
 var (
-	port = flag.Int("port", 50051, "The server port")
+	port = flag.Int("port", 50051, "The Server port")
 )
 
-type server struct {
+type Server struct {
 	pb.UnimplementedFrontendNvmeServiceServer
 	pb.UnimplementedNVMfRemoteControllerServiceServer
 	pb.UnimplementedFrontendVirtioBlkServiceServer
@@ -28,7 +28,7 @@ type server struct {
 	pb.UnimplementedMiddleendServiceServer
 }
 
-var opiSpdkServer server
+var opiSpdkServer Server
 
 func main() {
 	flag.Parse()
@@ -38,17 +38,17 @@ func main() {
 	}
 	s := grpc.NewServer()
 
-	pb.RegisterFrontendNvmeServiceServer(s, &server{})
-	pb.RegisterNVMfRemoteControllerServiceServer(s, &server{})
-	pb.RegisterFrontendVirtioBlkServiceServer(s, &server{})
-	pb.RegisterFrontendVirtioScsiServiceServer(s, &server{})
-	pb.RegisterNullDebugServiceServer(s, &server{})
-	pb.RegisterAioControllerServiceServer(s, &server{})
-	pb.RegisterMiddleendServiceServer(s, &server{})
+	pb.RegisterFrontendNvmeServiceServer(s, &Server{})
+	pb.RegisterNVMfRemoteControllerServiceServer(s, &Server{})
+	pb.RegisterFrontendVirtioBlkServiceServer(s, &Server{})
+	pb.RegisterFrontendVirtioScsiServiceServer(s, &Server{})
+	pb.RegisterNullDebugServiceServer(s, &Server{})
+	pb.RegisterAioControllerServiceServer(s, &Server{})
+	pb.RegisterMiddleendServiceServer(s, &Server{})
 
 	reflection.Register(s)
 
-	log.Printf("server listening at %v", lis.Addr())
+	log.Printf("Server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

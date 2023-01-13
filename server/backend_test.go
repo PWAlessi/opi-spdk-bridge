@@ -6,6 +6,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"github.com/opiproject/opi-spdk-bridge/server/spdktest"
 	"log"
 	"net"
 	"reflect"
@@ -87,7 +88,7 @@ func TestBackEnd_CreateNVMfRemoteController(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -97,7 +98,7 @@ func TestBackEnd_CreateNVMfRemoteController(t *testing.T) {
 	}(conn)
 	client := pb.NewNVMfRemoteControllerServiceClient(conn)
 
-	ln := startSpdkMockupServer()
+	ln := spdktest.StartSpdkMockupServer()
 
 	defer func(ln net.Listener) {
 		err := ln.Close()
@@ -158,7 +159,7 @@ func TestBackEnd_NVMfRemoteControllerReset(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -281,7 +282,7 @@ func TestBackEnd_ListNVMfRemoteControllers(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -291,7 +292,7 @@ func TestBackEnd_ListNVMfRemoteControllers(t *testing.T) {
 	}(conn)
 	client := pb.NewNVMfRemoteControllerServiceClient(conn)
 
-	ln := startSpdkMockupServer()
+	ln := spdktest.StartSpdkMockupServer()
 
 	defer func(ln net.Listener) {
 		err := ln.Close()
@@ -402,7 +403,7 @@ func TestBackEnd_GetNVMfRemoteController(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -412,7 +413,7 @@ func TestBackEnd_GetNVMfRemoteController(t *testing.T) {
 	}(conn)
 	client := pb.NewNVMfRemoteControllerServiceClient(conn)
 
-	ln := startSpdkMockupServer()
+	ln := spdktest.StartSpdkMockupServer()
 
 	defer func(ln net.Listener) {
 		err := ln.Close()
@@ -476,7 +477,7 @@ func TestBackEnd_NVMfRemoteControllerStats(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -486,7 +487,7 @@ func TestBackEnd_NVMfRemoteControllerStats(t *testing.T) {
 	}(conn)
 	client := pb.NewNVMfRemoteControllerServiceClient(conn)
 
-	ln := startSpdkMockupServer()
+	ln := spdktest.StartSpdkMockupServer()
 
 	defer func(ln net.Listener) {
 		err := ln.Close()
@@ -589,7 +590,7 @@ func TestBackEnd_DeleteNVMfRemoteController(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -599,7 +600,7 @@ func TestBackEnd_DeleteNVMfRemoteController(t *testing.T) {
 	}(conn)
 	client := pb.NewNVMfRemoteControllerServiceClient(conn)
 
-	ln := startSpdkMockupServer()
+	ln := spdktest.StartSpdkMockupServer()
 
 	defer func(ln net.Listener) {
 		err := ln.Close()

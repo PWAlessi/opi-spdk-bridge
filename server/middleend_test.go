@@ -5,6 +5,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/opiproject/opi-spdk-bridge/server/spdktest"
 	"log"
 	"net"
 	"reflect"
@@ -90,7 +91,7 @@ func TestMiddleEnd_CreateEncryptedVolume(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -100,8 +101,8 @@ func TestMiddleEnd_CreateEncryptedVolume(t *testing.T) {
 	}(conn)
 	client := pb.NewMiddleendServiceClient(conn)
 
-	// start SPDK mockup server
-	ln := startSpdkMockupServer()
+	// start SPDK mockup Server
+	ln := spdktest.StartSpdkMockupServer()
 
 	defer func(ln net.Listener) {
 		err := ln.Close()
@@ -160,7 +161,7 @@ func TestMiddleEnd_CreateEncryptedVolume(t *testing.T) {
 // 		},
 // 	}
 
-// 	// start GRPC mockup server
+// 	// start GRPC mockup Server
 // 	ctx := context.Background()
 // 	conn, err := grpc.DialContext(ctx, "", grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithContextDialer(dialer()))
 // 	if err != nil {
@@ -270,7 +271,7 @@ func TestMiddleEnd_ListEncryptedVolumes(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -280,8 +281,8 @@ func TestMiddleEnd_ListEncryptedVolumes(t *testing.T) {
 	}(conn)
 	client := pb.NewMiddleendServiceClient(conn)
 
-	// start SPDK mockup server
-	ln := startSpdkMockupServer()
+	// start SPDK mockup Server
+	ln := spdktest.StartSpdkMockupServer()
 
 	defer func(ln net.Listener) {
 		err := ln.Close()
@@ -386,7 +387,7 @@ func TestMiddleEnd_GetEncryptedVolume(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -396,8 +397,8 @@ func TestMiddleEnd_GetEncryptedVolume(t *testing.T) {
 	}(conn)
 	client := pb.NewMiddleendServiceClient(conn)
 
-	// start SPDK mockup server
-	ln := startSpdkMockupServer()
+	// start SPDK mockup Server
+	ln := spdktest.StartSpdkMockupServer()
 
 	defer func(ln net.Listener) {
 		err := ln.Close()
@@ -508,7 +509,7 @@ func TestMiddleEnd_EncryptedVolumeStats(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -518,8 +519,8 @@ func TestMiddleEnd_EncryptedVolumeStats(t *testing.T) {
 	}(conn)
 	client := pb.NewMiddleendServiceClient(conn)
 
-	// start SPDK mockup server
-	ln := startSpdkMockupServer()
+	// start SPDK mockup Server
+	ln := spdktest.StartSpdkMockupServer()
 
 	defer func(ln net.Listener) {
 		err := ln.Close()
@@ -622,7 +623,7 @@ func TestMiddleEnd_DeleteEncryptedVolume(t *testing.T) {
 		},
 	}
 
-	ctx, conn := startGrpcMockupServer()
+	ctx, conn := spdktest.StartGrpcMockupServer()
 
 	defer func(conn *grpc.ClientConn) {
 		err := conn.Close()
@@ -632,8 +633,8 @@ func TestMiddleEnd_DeleteEncryptedVolume(t *testing.T) {
 	}(conn)
 	client := pb.NewMiddleendServiceClient(conn)
 
-	// start SPDK mockup server
-	ln := startSpdkMockupServer()
+	// start SPDK mockup Server
+	ln := spdktest.StartSpdkMockupServer()
 
 	defer func(ln net.Listener) {
 		err := ln.Close()
